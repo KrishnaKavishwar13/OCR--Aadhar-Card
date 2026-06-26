@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Upload Document - DocuLens AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    .upload-area {
+        border: 2px dashed var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 5rem 2rem;
+        text-align: center;
+        background: rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+    }
+    .upload-area:hover, .upload-area.dragover {
+        border-color: var(--accent-primary);
+        background: rgba(99, 102, 241, 0.08);
+        transform: translateY(-2px);
+    }
+    .upload-input {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0; cursor: pointer;
+        z-index: 10;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center w-full min-h-[70vh] animate-fade-up">
+    <div class="glass-panel w-full" style="max-width: 600px;">
+        <div class="mb-8">
+            <a href="{% url 'dashboard' %}" class="text-secondary hover-white" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; transition: color 0.3s;">
+                <span class="material-icons" style="font-size:1.2rem;">arrow_back</span> Back to Dashboard
+            </a>
+            <h2 style="font-size: 2.2rem;">Upload Aadhar</h2>
+            <p class="text-secondary mt-2" style="font-size: 1.1rem;">Our AI will automatically extract details from the image.</p>
+        </div>
+
+        <form action="{% url 'document_upload' %}" method="POST" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+            <div class="upload-area" id="drop-zone">
+                <input type="file" name="aadhar_image" id="aadhar_image" class="upload-input" accept="image/*" required onchange="previewFile()">
+                <div class="icon-pulse">
+                    <span class="material-icons text-gradient" style="font-size: 5rem; margin-bottom: 1rem;">cloud_upload</span>
+                </div>
+                <h3 class="mb-2" style="font-size: 1.5rem;">Drag & Drop your image here</h3>
+                <p class="text-secondary">or click to browse from your computer</p>
+                <div id="file-name" class="mt-4" style="font-weight:600; display:none; color: var(--success-color); font-size: 1.1rem;"></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-full mt-6" id="submit-btn" style="display:none; font-size: 1.2rem; padding: 1.2rem;">
+                Analyze Document <span class="material-icons">auto_awesome</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function previewFile() {
+        const fileInput = document.getElementById('aadhar_image');
+        const fileNameDisplay = document.getElementById('file-name');
+        const dropZone = document.getElementById('drop-zone');
+        
+        if(fileInput.files.length > 0) {
+            fileNameDisplay.innerHTML = '<span class="material-icons align-middle mr-2">hourglass_empty</span> Analyzing ' + fileInput.files[0].name + '...';
+            fileNameDisplay.style.display = 'flex';
+            fileNameDisplay.style.alignItems = 'center';
+            fileNameDisplay.style.justifyContent = 'center';
+            fileNameDisplay.style.gap = '0.5rem';
+            dropZone.style.borderColor = 'var(--accent-primary)';
+            dropZone.style.background = 'rgba(99, 102, 241, 0.05)';
+            
+            // Automatically submit the form to the backend
+            document.getElementById('upload-form').submit();
+        }
+    }
+</script>
+{% endblock %}

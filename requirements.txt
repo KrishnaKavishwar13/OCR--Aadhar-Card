@@ -1,0 +1,11 @@
+ultralytics==8.2.0
+pytesseract
+easyocr
+supervision
+opencv-python-headless
+matplotlib
+pandas
+numpy
+Django
+gunicorn
+whitenoise

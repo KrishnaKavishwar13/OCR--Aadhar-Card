@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Sign Up - DocuLens AI{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center w-full min-h-[80vh]">
+    <div class="glass-panel w-full animate-fade-up" style="max-width: 480px;">
+        <div class="text-center mb-8">
+            <span class="material-icons text-gradient" style="font-size: 3.5rem; margin-bottom: 1rem;">how_to_reg</span>
+            <h2 style="font-size: 2rem;">Create Account</h2>
+            <p class="text-secondary mt-2">Join the next-gen OCR platform</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label" for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="full-name" class="form-control" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Create a strong password" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Repeat your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-full mt-4">
+                Sign Up <span class="material-icons">person_add</span>
+            </button>
+        </form>
+        
+        <p class="text-center text-secondary mt-8 text-sm">
+            Already have an account? <a href="{% url 'login' %}" class="text-gradient" style="text-decoration:none; font-weight:600; font-size: 1rem;">Sign in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

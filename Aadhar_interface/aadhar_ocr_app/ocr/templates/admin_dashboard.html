@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Admin Dashboard - Document Verification</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#135bec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+            "surface-light": "#ffffff",
+            "surface-dark": "#1a2231",
+            "text-light": "#0d121b",
+            "text-dark": "#e0e6f0",
+            "text-secondary-light": "#4c669a",
+            "text-secondary-dark": "#94a3b8",
+            "border-light": "#cfd7e7",
+            "border-dark": "#2d3748",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+  <div class="relative flex min-h-screen w-full">
+    <!-- SideNavBar -->
+    <aside
+      class="flex w-64 flex-col bg-surface-light dark:bg-surface-dark p-4 border-r border-border-light dark:border-border-dark">
+      <div class="flex items-center gap-2 mb-8">
+        <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+        <h1 class="text-xl font-bold text-text-light dark:text-text-dark">DocuVerify</h1>
+      </div>
+      <div class="flex flex-col justify-between flex-1">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary">
+            <span class="material-symbols-outlined text-primary">dashboard</span>
+            <p class="text-sm font-medium leading-normal">Dashboard</p>
+          </div>
+          <div
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-primary/10 hover:text-primary">
+            <span class="material-symbols-outlined">group</span>
+            <p class="text-sm font-medium leading-normal">User Management</p>
+          </div>
+          <div
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-primary/10 hover:text-primary">
+            <span class="material-symbols-outlined">description</span>
+            <p class="text-sm font-medium leading-normal">Document Types</p>
+          </div>
+          <div
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-primary/10 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <p class="text-sm font-medium leading-normal">Reports</p>
+          </div>
+          <div
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-primary/10 hover:text-primary">
+            <span class="material-symbols-outlined">settings</span>
+            <p class="text-sm font-medium leading-normal">Settings</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-primary/10 hover:text-primary">
+            <span class="material-symbols-outlined">logout</span>
+            <p class="text-sm font-medium leading-normal"><a href="{% url 'admin_login' %}">Logout</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <div class="flex flex-col w-full max-w-7xl mx-auto">
+        <!-- PageHeading & User Profile -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+          <p class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">Admin
+            Dashboard</p>
+          <div class="flex items-center gap-3">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Admin user avatar"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIc9hLr3pShiR36_ntMlp1uBfdlNFpWXKisIEiXFLSfr_dMkph3084n5iQG6Q46mF7pGsBIhfKpeD6tgo0jPhJU_B8uATQ1Kp1Qt1SN__eCIl3YyIr5ISSlbiWb-gRbB_hstxEuBnuocLfrn-0lR3WRnuFEuuL8u0aoTWVG3ZxR_PZb0-cnJq16uDpYyIYqZyuxxb65B6TzHVOZpXryxYHR82DwYtISPGfoCb3OrloPe1VpnMrnWbWuejnrmp_fVBtkhLP0XjXLLrW");'>
+            </div>
+            <div class="flex flex-col text-right">
+              <h1 class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Admin User</h1>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                admin@system.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div
+            class="flex flex-col gap-4 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Total Documents</p>
+              <span
+                class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark">folder</span>
+            </div>
+            <p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">1,482</p>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Verified Documents</p>
+              <span class="material-symbols-outlined text-green-500">check_circle</span>
+            </div>
+            <p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">1,205</p>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Mismatched Documents
+              </p>
+              <span class="material-symbols-outlined text-yellow-500">warning</span>
+            </div>
+            <p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">86</p>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Suspicious Documents
+              </p>
+              <span class="material-symbols-outlined text-red-500">gpp_maybe</span>
+            </div>
+            <p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">31</p>
+          </div>
+        </div>
+        <!-- SectionHeader -->
+        <h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
+          Recent Document Submissions</h2>
+        <!-- Table -->
+        <div class="w-full @container">
+          <div
+            class="overflow-hidden rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="bg-background-light dark:bg-background-dark">
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      User Name</th>
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      Document Type</th>
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      Upload Date</th>
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      Status</th>
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      Confidence Score</th>
+                    <th
+                      class="px-6 py-4 text-left text-text-light dark:text-text-dark text-sm font-medium leading-normal">
+                      Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-border-light dark:border-border-dark">
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-light dark:text-text-dark text-sm font-normal leading-normal">
+                      Alex Johnson</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      Passport</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      2023-10-26</td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <span
+                        class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">Verified</span>
+                    </td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <div class="flex items-center gap-3">
+                        <div class="w-[88px] overflow-hidden rounded-full bg-background-light dark:bg-background-dark">
+                          <div class="h-1.5 rounded-full bg-primary" style="width: 98%;"></div>
+                        </div>
+                        <p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">98%</p>
+                      </div>
+                    </td>
+                    <td class="h-[72px] px-6 py-2">
+                      <button class="text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:underline"
+                        onclick="window.location.href='{% url 'admin_view_document' %}'">View
+                        Details</button>
+                    </td>
+                  </tr>
+                  <tr class="border-t border-border-light dark:border-border-dark">
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-light dark:text-text-dark text-sm font-normal leading-normal">
+                      Maria Garcia</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      Driver's License</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      2023-10-26</td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <span
+                        class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-sm font-medium">Mismatched</span>
+                    </td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <div class="flex items-center gap-3">
+                        <div class="w-[88px] overflow-hidden rounded-full bg-background-light dark:bg-background-dark">
+                          <div class="h-1.5 rounded-full bg-primary" style="width: 75%;"></div>
+                        </div>
+                        <p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">75%</p>
+                      </div>
+                    </td>
+                    <td class="h-[72px] px-6 py-2">
+                      <button class="text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:underline"
+                        onclick="window.location.href='{% url 'admin_view_document' %}'">View
+                        Details</button>
+                    </td>
+                  </tr>
+                  <tr class="border-t border-border-light dark:border-border-dark">
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-light dark:text-text-dark text-sm font-normal leading-normal">
+                      Chen Wei</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      ID Card</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      2023-10-25</td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <span
+                        class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">Verified</span>
+                    </td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <div class="flex items-center gap-3">
+                        <div class="w-[88px] overflow-hidden rounded-full bg-background-light dark:bg-background-dark">
+                          <div class="h-1.5 rounded-full bg-primary" style="width: 95%;"></div>
+                        </div>
+                        <p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">95%</p>
+                      </div>
+                    </td>
+                    <td class="h-[72px] px-6 py-2">
+                      <button class="text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:underline"
+                        onclick="window.location.href='{% url 'admin_view_document' %}'">View
+                        Details</button>
+                    </td>
+                  </tr>
+                  <tr class="border-t border-border-light dark:border-border-dark">
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-light dark:text-text-dark text-sm font-normal leading-normal">
+                      Fatima Al-Sayed</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      Utility Bill</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      2023-10-24</td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <span
+                        class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm font-medium">Suspicious</span>
+                    </td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <div class="flex items-center gap-3">
+                        <div class="w-[88px] overflow-hidden rounded-full bg-background-light dark:bg-background-dark">
+                          <div class="h-1.5 rounded-full bg-primary" style="width: 62%;"></div>
+                        </div>
+                        <p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">62%</p>
+                      </div>
+                    </td>
+                    <td class="h-[72px] px-6 py-2">
+                      <button class="text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:underline"
+                        onclick="window.location.href='{% url 'admin_view_document' %}'">View
+                        Details</button>
+                    </td>
+                  </tr>
+                  <tr class="border-t border-border-light dark:border-border-dark">
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-light dark:text-text-dark text-sm font-normal leading-normal">
+                      John Smith</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      Passport</td>
+                    <td
+                      class="h-[72px] px-6 py-2 text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                      2023-10-24</td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <span
+                        class="inline-flex items-center justify-center rounded-full h-7 px-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium">Pending</span>
+                    </td>
+                    <td class="h-[72px] px-6 py-2 text-sm font-normal leading-normal">
+                      <div class="flex items-center gap-3">
+                        <div class="w-[88px] overflow-hidden rounded-full bg-background-light dark:bg-background-dark">
+                          <div class="h-1.5 rounded-full bg-primary" style="width: 88%;"></div>
+                        </div>
+                        <p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">88%</p>
+                      </div>
+                    </td>
+                    <td class="h-[72px] px-6 py-2">
+                      <button class="text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:underline"
+                        onclick="window.location.href='{% url 'admin_view_document' %}'">View
+                        Details</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Pagination -->
+            <div class="flex justify-between items-center p-4 border-t border-border-light dark:border-border-dark">
+              <button
+                class="flex items-center gap-2 px-4 h-9 text-sm font-medium rounded-lg border border-border-light dark:border-border-dark text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark disabled:opacity-50"
+                disabled="">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                Previous
+              </button>
+              <div class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                Page 1 of 10
+              </div>
+              <button
+                class="flex items-center gap-2 px-4 h-9 text-sm font-medium rounded-lg border border-border-light dark:border-border-dark text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark">
+                Next
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

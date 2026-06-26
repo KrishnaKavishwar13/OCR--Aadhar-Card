@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Success - DocuLens AI{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center w-full min-h-[70vh] animate-fade-up">
+    <div class="glass-panel w-full text-center" style="max-width: 500px;">
+        <span class="material-icons" style="font-size: 5rem; margin-bottom: 1rem; color: var(--success-color);">check_circle</span>
+        <h2 class="mb-4">Success!</h2>
+        <p class="text-secondary mb-8">Your operation was completed successfully.</p>
+        <a href="{% url 'dashboard' %}" class="btn btn-primary w-full">
+            Return to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

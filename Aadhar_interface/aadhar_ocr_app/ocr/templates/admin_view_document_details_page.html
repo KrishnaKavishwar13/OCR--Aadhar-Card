@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Document Details - DocuVerify System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex min-h-screen w-full">
+        <!-- SideNavBar -->
+        <aside
+            class="flex w-64 flex-col bg-white dark:bg-background-dark border-r border-slate-200 dark:border-slate-800">
+            <div class="flex h-full min-h-0 flex-col justify-between p-4">
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-3 items-center">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                            data-alt="DocuVerify System Logo"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCz_EN2i9Z8pK8mqUAIlBVPpV5Wwr29EMFKiovtDC6n5WN1m5s5kW2JG039XYLT6H4TvVL70rx2FpV2-ROXvUwoOLBagjqmUDodXarvcMP9xG0RboRORdG-N4Usx8Z6L9CnDN17Oeje-LmUrXFNPi4g9Q5tRQqENunnVy8EAHUGlhsR90idLIgRJ-JvUl0dzgP7bEeHQZYWjnoXguAuhnc4frE_bkf39Mq0vsCWRWA6rYrtCHwr-l3eR6O5-ojlyl3uc40UDZCz1hA_");'>
+                        </div>
+                        <div class="flex flex-col">
+                            <h1 class="text-slate-900 dark:text-slate-200 text-base font-bold leading-normal">Admin
+                                Panel</h1>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">DocuVerify
+                                System</p>
+                        </div>
+                    </div>
+                    <nav class="flex flex-col gap-2 mt-4">
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">dashboard</span>
+                            <p class="text-sm font-medium leading-normal"><a
+                                    href="{% url 'admin_dashboard' %}">Dashboard</a></p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary"
+                            href="#">
+                            <span class="material-symbols-outlined text-primary"
+                                style="font-variation-settings: 'FILL' 1; font-size: 24px;">description</span>
+                            <p class="text-sm font-medium leading-normal">Documents</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">group</span>
+                            <p class="text-sm font-medium leading-normal">Users</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">settings</span>
+                            <p class="text-sm font-medium leading-normal">Settings</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">bar_chart</span>
+                            <p class="text-sm font-medium leading-normal">Reports</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <button
+                        class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                        <span class="truncate">New Upload</span>
+                    </button>
+                    <div class="flex flex-col gap-1">
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">support_agent</span>
+                            <p class="text-sm font-medium leading-normal">Support</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            href="#">
+                            <span class="material-symbols-outlined text-slate-800 dark:text-slate-200"
+                                style="font-size: 24px;">logout</span>
+                            <p class="text-sm font-medium leading-normal"><a href="{% url 'admin_login' %}">Logout</a>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+            <div class="p-6 lg:p-10">
+                <!-- Breadcrumbs -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors"
+                        href="{% url 'admin_dashboard' %}">Dashboard</a>
+                    <span class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">/</span>
+                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#">Documents</a>
+                    <span class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">/</span>
+                    <span class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Document
+                        #12345</span>
+                </div>
+                <!-- PageHeading -->
+                <div class="flex flex-wrap justify-between gap-4 mb-8">
+                    <div class="flex min-w-72 flex-col gap-1">
+                        <p class="text-slate-900 dark:text-slate-100 text-3xl font-bold leading-tight">Document Details:
+                            #12345</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Review
+                            extracted data and verification status for this document.</p>
+                    </div>
+                </div>
+                <!-- Two-column layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column: Document Preview -->
+                    <div class="lg:col-span-1">
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl shadow-sm p-1 border border-slate-200 dark:border-slate-800">
+                            <div class="w-full bg-center bg-no-repeat bg-cover aspect-[2/3] rounded-lg"
+                                data-alt="Scanned passport document preview"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzapUuQ2oZ1UPDdgjyCLQ_krpQ7gVeUDLoKWuONoCoyAvbHlR4364yFpoo8NSg7DPOODALbrb32WunL3aSedQet7gpWHhvgcTnSqNrOUPpZN52rVm9Qli7vLYCcEBNnIu-ujMhOmnja0HoB4cbzGHdiHedGE3dau4b8nOv8lLMsE5KlVH4X8rnfSH3YBj1YniglZQ1W_e22UwGU3MPVWqt6ELj13TSfubHJcUaesaFXAKjvZvyyc55o31HRB_QS6RR6kK9AMS5Dm59");'>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Details Cards -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <!-- Actions Card -->
+                        <div
+                            class="bg-white dark:bg-slate-900/70 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                            <h2
+                                class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] mb-4">
+                                Actions</h2>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button
+                                    class="flex-1 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined mr-2"
+                                        style="font-size: 20px;">verified_user</span>
+                                    <span class="truncate">Mark as Manually Verified</span>
+                                </button>
+                                <button
+                                    class="flex-1 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                    <span class="material-symbols-outlined mr-2"
+                                        style="font-size: 20px;">download</span>
+                                    <span class="truncate">Download Document</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Verification Status Card -->
+                        <div
+                            class="bg-white dark:bg-slate-900/70 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                            <h2
+                                class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] mb-4">
+                                Verification Status</h2>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="text-base font-semibold text-slate-800 dark:text-slate-200">Overall
+                                    Status:</span>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/50 px-3 py-1 text-sm font-semibold text-green-800 dark:text-green-300">Auto-Verified</span>
+                            </div>
+                            <ul class="space-y-3">
+                                <li class="flex justify-between items-center">
+                                    <span class="text-slate-600 dark:text-slate-400">Signature Match</span>
+                                    <div class="flex items-center gap-1 text-green-600 dark:text-green-400">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size: 20px;">check_circle</span>
+                                        <span class="font-medium">Pass</span>
+                                    </div>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span class="text-slate-600 dark:text-slate-400">Date Format</span>
+                                    <div class="flex items-center gap-1 text-green-600 dark:text-green-400">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size: 20px;">check_circle</span>
+                                        <span class="font-medium">Pass</span>
+                                    </div>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span class="text-slate-600 dark:text-slate-400">Hologram Check</span>
+                                    <div class="flex items-center gap-1 text-green-600 dark:text-green-400">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size: 20px;">check_circle</span>
+                                        <span class="font-medium">Pass</span>
+                                    </div>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span class="text-slate-600 dark:text-slate-400">Address Verification</span>
+                                    <div class="flex items-center gap-1 text-red-600 dark:text-red-400">
+                                        <span class="material-symbols-outlined" style="font-size: 20px;">cancel</span>
+                                        <span class="font-medium">Fail</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Extracted Data Card -->
+                        <div
+                            class="bg-white dark:bg-slate-900/70 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                            <h2
+                                class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] mb-4">
+                                Extracted Data</h2>
+                            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Full Name</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">Jane Marie Doe</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Document Type
+                                    </dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">Passport</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Date of Birth
+                                    </dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">1990-05-15</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Issue Date</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">2022-08-01</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Expiry Date</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">2032-07-31</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Issuing Authority
+                                    </dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">United States</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <!-- Document Information Card -->
+                        <div
+                            class="bg-white dark:bg-slate-900/70 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                            <h2
+                                class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] mb-4">
+                                Document Information</h2>
+                            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Document ID</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">#12345</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Uploader</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">admin@docuverify.com</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">File Name</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">passport_scan_jdoe.pdf</dd>
+                                </div>
+                                <div class="flex flex-col">
+                                    <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Upload Date</dt>
+                                    <dd class="text-base text-slate-900 dark:text-slate-100">2024-07-16 10:32 AM</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

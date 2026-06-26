@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Analysis Results - DocuLens AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    .result-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 2rem;
+    }
+    @media (max-width: 768px) {
+        .result-grid { grid-template-columns: 1fr; }
+    }
+    .data-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .data-card:hover {
+        background: rgba(255,255,255,0.06);
+        transform: translateX(5px);
+    }
+    .data-label {
+        font-size: 0.85rem;
+        color: var(--accent-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .data-value {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #fff;
+    }
+    .img-preview {
+        width: 100%;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        object-fit: cover;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="animate-fade-up">
+    <div class="mb-8 flex justify-between items-end flex-wrap gap-4">
+        <div>
+            <a href="{% url 'dashboard' %}" class="text-secondary hover-white" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1rem; transition: color 0.3s;">
+                <span class="material-icons" style="font-size:1rem;">arrow_back</span> Back to Dashboard
+            </a>
+            <h2 style="font-size: 2.5rem;">Extraction Results</h2>
+            <p class="text-secondary mt-2" style="font-size: 1.1rem;">Review the data extracted by our AI engine.</p>
+        </div>
+        <button class="btn btn-primary" onclick="window.location.href='{% url 'document_upload' %}'">
+            <span class="material-icons">refresh</span> Scan Another
+        </button>
+    </div>
+
+    <div class="result-grid">
+        <!-- Image Preview -->
+        <div class="glass-panel" style="padding: 1.5rem;">
+            <h3 class="mb-4 text-gradient" style="font-size: 1.5rem;">Scanned Document</h3>
+            {% if image_url %}
+                <img src="{{ image_url }}" alt="Uploaded Document" class="img-preview">
+            {% else %}
+                <div class="text-center p-8 border border-dashed" style="border-color: var(--border-color); border-radius: var(--radius-md);">
+                    <span class="material-icons text-secondary text-5xl mb-2">image_not_supported</span>
+                    <p class="text-secondary">Image preview not available</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Extracted Data -->
+        <div class="glass-panel">
+            <h3 class="mb-6 text-gradient" style="font-size: 1.8rem;">Extracted Details</h3>
+            
+            <div class="data-card">
+                <div class="data-label">Aadhar Number</div>
+                <div class="data-value">{{ details.AADHAR_NUMBER|default:"Not Detected" }}</div>
+            </div>
+            
+            <div class="data-card">
+                <div class="data-label">Full Name</div>
+                <div class="data-value">{{ details.NAME|default:"Not Detected" }}</div>
+            </div>
+            
+            <div class="data-card">
+                <div class="data-label">Date of Birth</div>
+                <div class="data-value">{{ details.DATE_OF_BIRTH|default:"Not Detected" }}</div>
+            </div>
+            
+            <div class="data-card">
+                <div class="data-label">Gender</div>
+                <div class="data-value">{{ details.GENDER|default:"Not Detected" }}</div>
+            </div>
+
+            <div class="mt-8 flex gap-4">
+                <button class="btn btn-primary w-full" onclick="window.location.href='{% url 'dashboard' %}'">
+                    <span class="material-icons">check_circle</span> Confirm & Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

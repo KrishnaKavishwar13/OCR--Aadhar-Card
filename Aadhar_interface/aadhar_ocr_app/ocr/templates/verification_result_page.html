@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Verification Result - DocuLens AI{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center w-full min-h-[70vh] animate-fade-up">
+    <div class="glass-panel w-full text-center" style="max-width: 500px;">
+        <span class="material-icons text-gradient" style="font-size: 5rem; margin-bottom: 1rem;">verified</span>
+        <h2 class="mb-4">Verification Status</h2>
+        <p class="text-secondary mb-8">This document has been processed successfully and marked as verified by the system.</p>
+        <a href="{% url 'dashboard' %}" class="btn btn-primary w-full">
+            Return to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

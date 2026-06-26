@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - DocuLens AI{% endblock %}
+
+{% block content %}
+<div class="animate-fade-up">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 style="font-size: 2.5rem;">Overview</h1>
+            <p class="text-secondary mt-2 text-sm" style="font-size: 1rem;">Manage and view your uploaded documents</p>
+        </div>
+        <a href="{% url 'document_upload' %}" class="btn btn-primary">
+            <span class="material-icons">upload_file</span> New Scan
+        </a>
+    </div>
+
+    <div class="glass-panel">
+        <h3 class="mb-6 text-gradient" style="font-size: 1.5rem;">Recent Documents</h3>
+        
+        {% if documents %}
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Document Info</th>
+                        <th>Upload Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in documents %}
+                    <tr>
+                        <td>
+                            <div class="flex items-center gap-4">
+                                <span class="material-icons text-secondary" style="font-size: 2rem;">badge</span>
+                                <div>
+                                    <div style="font-weight: 500;">{{ doc.name|default:"Aadhar Card" }}</div>
+                                    <div class="text-secondary text-sm">Aadhar Document</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ doc.uploaded_at|date:"M d, Y" }}</td>
+                        <td>
+                            {% if doc.status == 'VERIFIED' %}
+                                <span class="badge badge-verified">Verified</span>
+                            {% elif doc.status == 'REJECTED' %}
+                                <span class="badge badge-rejected">Rejected</span>
+                            {% else %}
+                                <span class="badge badge-pending">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="window.location.href='{% url 'verification_result' %}'">
+                                Details
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-16">
+            <span class="material-icons text-secondary" style="font-size: 5rem; opacity: 0.5; margin-bottom: 1rem;">inventory_2</span>
+            <h3 style="font-size: 1.8rem;">No documents yet</h3>
+            <p class="text-secondary mt-2 mb-6" style="font-size: 1.1rem;">Upload your first Aadhar card to get started with DocuLens AI.</p>
+            <a href="{% url 'document_upload' %}" class="btn btn-primary">
+                Upload Now
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

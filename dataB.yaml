@@ -1,0 +1,6 @@
+train: E:\OCR-aadhar\dataset\Dataset2\train\images
+val: E:\OCR-aadhar\dataset\Dataset2\valid\images
+test: E:\OCR-aadhar\dataset\Dataset2\test\images
+
+nc: 5   # number of classes (jitne labels aapne banaye)
+names: ['AADHAR_NUMBER', 'DATE_OF_BIRTH', 'GENDER', 'NAME', 'ADDRESS']

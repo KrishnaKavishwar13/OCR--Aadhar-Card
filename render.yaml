@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ocr-aadhar-app
+    env: docker
+    region: frankfurt
+    plan: free # Note: Free tier might be slow for heavy ML models
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 8000

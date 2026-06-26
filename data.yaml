@@ -1,0 +1,6 @@
+train: ./dataset/train/images
+val: ./dataset/valid/images
+test: ./dataset/test/images
+
+nc: 5   # number of classes (jitne labels aapne banaye)
+names: ['AADHAR_NUMBER', 'DATE_OF_BIRTH', 'GENDER', 'NAME', 'ADDRESS']
