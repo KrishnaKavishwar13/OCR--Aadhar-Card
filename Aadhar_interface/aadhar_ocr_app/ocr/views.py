@@ -6,11 +6,13 @@ from .models import Document
 from django.contrib import messages
 from ultralytics import YOLO
 import cv2
+cv2.setNumThreads(1) # Prevents OpenCV from spawning too many threads on small servers
 import pytesseract
 import re
 
 # --- CONFIG ---
 import torch
+torch.set_num_threads(1) # CRITICAL OPTIMIZATION for Render's 0.1 CPU core
 import ultralytics.nn.tasks as tasks
 
 # Monkeypatch torch.load to disable weights_only=True default
