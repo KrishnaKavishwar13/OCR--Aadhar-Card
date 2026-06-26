@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from .models import Document
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from ultralytics import YOLO
 import cv2
@@ -49,56 +47,6 @@ def extract_text_from_box(image, box):
     text = pytesseract.image_to_string(gray, lang='eng', config='--psm 6')
     return text.strip()
 
-def index(request):
-    # This view is deprecated, redirecting to login
-    return login_view(request)
-
-    return render(request, 'ocr/index.html', context)
-
-def login_view(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('dashboard')
-        else:
-            messages.error(request, 'Invalid email or password')
-            
-    return render(request, 'login.html')
-
-def register_view(request):
-    if request.method == 'POST':
-        full_name = request.POST.get('full-name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm-password')
-
-        if password != confirm_password:
-            messages.error(request, 'Passwords do not match')
-            return render(request, 'register.html')
-        
-        if User.objects.filter(username=email).exists():
-            messages.error(request, 'Email already registered')
-            return render(request, 'register.html')
-        
-        try:
-            # Create user with email as username
-            user = User.objects.create_user(username=email, email=email, password=password)
-            user.first_name = full_name
-            user.save()
-            messages.success(request, 'Account created successfully! Please login.')
-            return redirect('login')
-        except Exception as e:
-            messages.error(request, f'Error creating account: {str(e)}')
-            
-    return render(request, 'register.html')
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')
 
 def dashboard_view(request):
     documents = Document.objects.all().order_by('-uploaded_at')
